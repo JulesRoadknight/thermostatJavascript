@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #0084b4;
+  background-color: #ddd;
 }
 
 div {
@@ -11,4 +11,16 @@ div {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.high-usage {
+  color: red;
+}
+
+.medium-usage {
+  color: black;
+}
+
+.low-usage {
+  color: green;
 }

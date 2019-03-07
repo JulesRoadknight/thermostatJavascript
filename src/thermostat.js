@@ -30,6 +30,9 @@ Thermostat.prototype.toggle = function() {
   }
   else {
     this.powerSaving = true
+    if (this.temp > this.powerSaveOn) {
+      this.temp = this.powerSaveOn
+    }
   }
 };
 

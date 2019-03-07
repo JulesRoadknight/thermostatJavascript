@@ -23,6 +23,7 @@
     <div>
       <h2 id="feedback"></h2>
     </div>
+    <div id="weather"></div>
 
   <script src="../src/thermostat.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -30,16 +31,24 @@
 
     $(document).ready(function() {
       therm = new Thermostat();
+      setTemp();
+    })
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?q=London", function(resp){
+      $("#weather").html(resp.weather[0].main);
+    })
+
+    function setTemp() {
       $('#currentTemp').text("Current temp is " + therm.temp);
       $('#usage').text(therm.usage())
-    })
+      $('#usage').attr('class', therm.usage());
+    }
 
     $('#up').click(function() {
       $('#feedback').text("")
       try {
         therm.up();
-        $('#currentTemp').text("Current temp is " + therm.temp);
-        $('#usage').text(therm.usage())
+        setTemp();
       }
       catch(error) {
         $('#feedback').text(error)
@@ -50,8 +59,7 @@
       $('#feedback').text("")
       try {
         therm.down();
-        $('#currentTemp').text("Current temp is " + therm.temp);
-        $('#usage').text(therm.usage())
+        setTemp();
       }
       catch(error) {
         $('#feedback').text(error)
@@ -61,15 +69,13 @@
     $('#reset').click(function() {
       $('#feedback').text("")
       therm.reset();
-      $('#currentTemp').text("Current temp is " + therm.temp);
-      $('#usage').text(therm.usage())
+      setTemp();
     })
 
     $('#toggle').click(function() {
       $('#feedback').text("")
       therm.toggle();
-      $('#currentTemp').text("Current temp is " + therm.temp);
-      $('#usage').text(therm.usage())
+      setTemp();
       if (therm.powerSaving == true) {
         $('#toggle').text("Turn Power-Saving OFF")
       } else {

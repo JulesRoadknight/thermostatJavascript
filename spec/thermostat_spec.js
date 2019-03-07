@@ -43,6 +43,13 @@ describe("thermostat", function() {
     expect(thermostat.powerSaving).toBe(true)
   });
 
+  it("drops the temperature to 25 if temperature is above 25 and power saving is turned on", function() {
+    thermostat.toggle();
+    thermostat.up(10);
+    thermostat.toggle();
+    expect(thermostat.temp).toBe(25)
+  });
+
   it("Reset function sets temp to 20", function() {
     thermostat.up(5)
     thermostat.reset()
