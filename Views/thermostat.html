@@ -9,20 +9,76 @@
     <title></title>
   </head>
   <body>
-    <!-- <script type="text/javascript">
-
-    </script> -->
     <div>
-    <h1 id="currentTemp">Current temp is 20</h1>
+      <h1 id="currentTemp"></h1>
 
-    <h2 id="usage">Medium-usage</h2>
 
-    <h2 id="feedback">All Clear</h2>
+      <h2 id="usage"></h2>
 
-    <button type="button" class="btn btn-primary" name="up">Up</button>
-    <button type="button" class="btn btn-primary" name="down">Down</button>
-    <button type="button" class="btn btn-info" name="reset">Reset</button>
-    <button type="button" class="btn btn-warning" name="toggle">Power-Saving</button>
+      <button type="button" class="btn btn-primary" id="up" name="up">Up</button>
+      <button type="button" class="btn btn-primary" id="down" name="down">Down</button>
+      <button type="button" class="btn btn-info" id="reset" name="reset">Reset</button>
+      <button type="button" class="btn btn-warning" id="toggle" name="toggle">Turn Power-Saving OFF</button>
+    </div>
+    <div>
+      <h2 id="feedback"></h2>
+    </div>
+
+  <script src="../src/thermostat.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      therm = new Thermostat();
+      $('#currentTemp').text("Current temp is " + therm.temp);
+      $('#usage').text(therm.usage())
+    })
+
+    $('#up').click(function() {
+      $('#feedback').text("")
+      try {
+        therm.up();
+        $('#currentTemp').text("Current temp is " + therm.temp);
+        $('#usage').text(therm.usage())
+      }
+      catch(error) {
+        $('#feedback').text(error)
+      }
+    })
+
+    $('#down').click(function() {
+      $('#feedback').text("")
+      try {
+        therm.down();
+        $('#currentTemp').text("Current temp is " + therm.temp);
+        $('#usage').text(therm.usage())
+      }
+      catch(error) {
+        $('#feedback').text(error)
+      }
+    })
+
+    $('#reset').click(function() {
+      $('#feedback').text("")
+      therm.reset();
+      $('#currentTemp').text("Current temp is " + therm.temp);
+      $('#usage').text(therm.usage())
+    })
+
+    $('#toggle').click(function() {
+      $('#feedback').text("")
+      therm.toggle();
+      $('#currentTemp').text("Current temp is " + therm.temp);
+      $('#usage').text(therm.usage())
+      if (therm.powerSaving == true) {
+        $('#toggle').text("Turn Power-Saving OFF")
+      } else {
+        $('#toggle').text("Turn Power-Saving ON")
+      }
+    })
+
+  </script>
+  <div id="dummy">
   </div>
   </body>
 </html>
