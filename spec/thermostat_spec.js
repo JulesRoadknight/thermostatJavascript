@@ -1,37 +1,66 @@
 describe("thermostat", function() {
 
+  beforeEach(function(){
+    thermostat = new Thermostat
+  })
+
   it("starts at 20 degrees", function() {
-    var thermostat = new Thermostat
     expect(thermostat.temp).toEqual(20);
   });
 
   it("increases when up is called", function() {
-    var thermostat = new Thermostat
     thermostat.up()
     expect(thermostat.temp).toEqual(21);
   });
 
   it("decreases when down is called", function() {
-    var thermostat = new Thermostat
     thermostat.down()
     expect(thermostat.temp).toEqual(19);
   });
 
   it("has a min temp of 10", function() {
-    var thermostat = new Thermostat
     expect(thermostat.min).toEqual(10);
   });
 
   it("cannot go below 10", function() {
-    var thermostat = new Thermostat
     // expect(thermostat.down(11)).toThrowError();
+    // for some reason, this fixes that Actual error
     expect(() => {thermostat.down(11)}).toThrow()
   });
 
-  // it("has max temp of 25 if power saving", function() {
-  //   var thermostat = new Thermostat
-  //   thermostat.powerSaving = true
-  //   expect(thermostat.max).toEqual(25);
-  // });
+  it("has max temp of 25 if power saving", function() {
+    thermostat.up(5)
+    expect(() => {thermostat.up()}).toThrow()
+  });
+
+  it("has max temp of 32 if not power saving", function() {
+    thermostat.powerSaving = false
+    thermostat.up(12)
+    expect(() => {thermostat.up()}).toThrow()
+  });
+
+  it("powerSaving is true by default", function() {
+    expect(thermostat.powerSaving).toBe(true)
+  });
+
+  it("Reset function sets temp to 20", function() {
+    thermostat.up(5)
+    thermostat.reset()
+    expect(thermostat.temp).toBe(20)
+  });
+
+  it("Temp < 18 to be low-usage", function() {
+    thermostat.down(3)
+    expect(thermostat.usage()).toBe("low-usage")
+  });
+
+  it("Temp > 18 and < 25 to be medium-usage", function() {
+    expect(thermostat.usage()).toBe("medium-usage")
+  });
+
+  it("Temp >= 25 to be high-usage", function() {
+    thermostat.up(5)
+    expect(thermostat.usage()).toBe("high-usage")
+  });
 
 });
