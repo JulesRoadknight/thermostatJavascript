@@ -34,7 +34,7 @@
       setTemp();
     })
 
-    $.get("http://api.openweathermap.org/data/2.5/weather?q=London", function(resp){
+    $.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed", function(resp){
       $("#weather").html(resp.weather[0].main);
     })
 
