@@ -4,6 +4,7 @@ function Bowling() {
   this.frame = 1
   this.rollMax = 20
   this.frameMax = 10
+  this.status = 'In progress'
 };
 
 
@@ -15,10 +16,17 @@ Bowling.prototype.addScore = function(pins) {
   } else {
     this.roll ++
   }
+  bowling.gameOver()
 };
 
 Bowling.prototype.checkLast = function(pins) {
   if (this.roll == 19 && pins == 'strike') {
     this.rollMax = 21
+  }
+};
+
+Bowling.prototype.gameOver = function(pins) {
+  if (this.roll > this.rollMax) {
+    this.status = 'Game Over'
   }
 };

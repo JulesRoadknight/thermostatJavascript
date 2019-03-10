@@ -109,6 +109,25 @@ Added an extra condition to addScore to prevent skipping rolls on the final fram
 TEST
 Jasmine unit test expecting the game to end when the turn limit is exceeded.
 
+ERROR
+(Expected undefined to equal 'Game Over')
+
+RED
+Defined this.status
+
+ERROR
+(Expected '' to equal 'Game Over')
+
+GREEN
+Made this.status equal 'Game Over' once turn limit was reached
+
+
+TEST
+Jasmine unit test checking the functionality of Game Over, even when turn limit is extended.
+
+GREEN
+
+
 
 THINKING ABOUT SCORING
 

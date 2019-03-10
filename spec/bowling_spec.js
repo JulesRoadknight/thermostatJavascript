@@ -54,6 +54,18 @@ describe("bowling", function() {
     expect(bowling.rollMax).toEqual(21);
   });
 
+  it("ends the game when the turn limit is exceeded", function() {
+    bowling.roll = 20
+    bowling.addScore(5)
+    expect(bowling.status).toEqual('Game Over');
+  });
 
+  it("ends the game when the turn limit is exceeded", function() {
+    bowling.roll = 19
+    bowling.addScore('strike')
+    bowling.addScore(4)
+    bowling.addScore(4)
+    expect(bowling.status).toEqual('Game Over');
+  });
 
 });

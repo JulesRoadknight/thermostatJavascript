@@ -10,40 +10,16 @@
   </head>
   <body>
     <div>
-      <h1 id="currentTemp"></h1>
-
-
-      <h2 id="usage"></h2>
-
-<<<<<<< HEAD:Views/bowling.html
-    </script> -->
-    <div id="scoresheet">
-    <h1>Bowling Scoresheet</h1>
-
-
-
-=======
-      <button type="button" class="btn btn-primary" id="up" name="up">Up</button>
-      <button type="button" class="btn btn-primary" id="down" name="down">Down</button>
-      <button type="button" class="btn btn-info" id="reset" name="reset">Reset</button>
-      <button type="button" class="btn btn-warning" id="toggle" name="toggle">Turn Power-Saving OFF</button>
+      <h1>Bowling Scoresheet</h1>
     </div>
-    <div>
-      <h2 id="feedback"></h2>
-    </div>
-    <div id="weather"></div>
 
-  <script src="../src/thermostat.js"></script>
+  <script src="../src/bowling.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script>
 
     $(document).ready(function() {
       therm = new Thermostat();
       setTemp();
-    })
-
-    $.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed", function(resp){
-      $("#weather").html(resp.weather[0].main);
     })
 
     function setTemp() {
@@ -92,8 +68,5 @@
     })
 
   </script>
-  <div id="dummy">
->>>>>>> 34347777bb329c32d0329aac6bf275fcea5507aa:Views/thermostat.html
-  </div>
   </body>
 </html>
