@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../Public/style.css">
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <h1>Bowling Scoresheet</h1>
+    </div>
+
+  <script src="../src/bowling.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      therm = new Thermostat();
+      setTemp();
+    })
+
+    function setTemp() {
+      $('#currentTemp').text("Current temp is " + therm.temp);
+      $('#usage').text(therm.usage())
+      $('#usage').attr('class', therm.usage());
+    }
+
+    $('#up').click(function() {
+      $('#feedback').text("")
+      try {
+        therm.up();
+        setTemp();
+      }
+      catch(error) {
+        $('#feedback').text(error)
+      }
+    })
+
+    $('#down').click(function() {
+      $('#feedback').text("")
+      try {
+        therm.down();
+        setTemp();
+      }
+      catch(error) {
+        $('#feedback').text(error)
+      }
+    })
+
+    $('#reset').click(function() {
+      $('#feedback').text("")
+      therm.reset();
+      setTemp();
+    })
+
+    $('#toggle').click(function() {
+      $('#feedback').text("")
+      therm.toggle();
+      setTemp();
+      if (therm.powerSaving == true) {
+        $('#toggle').text("Turn Power-Saving OFF")
+      } else {
+        $('#toggle').text("Turn Power-Saving ON")
+      }
+    })
+
+  </script>
+  </body>
+</html>
