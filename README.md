@@ -1,6 +1,6 @@
 # Javascript Thermostat
 
-This project is a single-page web app that mocks the functionality of a thermostat, and displays the weather in London to inform decisions.
+This project is a single-page web app that mocks the functionality of a thermostat, and displays the weather in London.
 
 # Technologies
 
@@ -13,4 +13,4 @@ HTML, CSS, Javascript, Jasmine, openweathermap api
 
 # Running tests
 
-- Inspect the thermostat.html page and check the console
+- Open SpecRunner.html in your browser

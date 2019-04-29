@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,22 +9,21 @@
     <link rel="stylesheet" type="text/css" href="../Public/style.css">
     <title></title>
   </head>
+
   <body>
-    <div>
+    <div id="therm">
       <h1 id="currentTemp"></h1>
-
-
       <h2 id="usage"></h2>
-
-      <button type="button" class="btn btn-primary" id="up" name="up">Up</button>
-      <button type="button" class="btn btn-primary" id="down" name="down">Down</button>
+      <div id="updown">
+        <button type="button" class="btn btn-primary" id="up" name="up">Up</button>
+        <button type="button" class="btn btn-primary" id="down" name="down">Down</button>
+      </div>
+      <br>
       <button type="button" class="btn btn-info" id="reset" name="reset">Reset</button>
+      <br>
       <button type="button" class="btn btn-warning" id="toggle" name="toggle">Turn Power-Saving OFF</button>
+      <div id="weather"></div>
     </div>
-    <div>
-      <h2 id="feedback"></h2>
-    </div>
-    <div id="weather"></div>
 
   <script src="../src/thermostat.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -35,11 +35,11 @@
     })
 
     $.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed", function(resp){
-      $("#weather").html(resp.weather[0].main);
+      $("#weather").html("Today in London: " + resp.weather[0].main);
     })
 
     function setTemp() {
-      $('#currentTemp').text("Current temp is " + therm.temp);
+      $('#currentTemp').text("Current temp is " + therm.temp + "°C");
       $('#usage').text(therm.usage())
       $('#usage').attr('class', therm.usage());
     }
@@ -82,9 +82,6 @@
         $('#toggle').text("Turn Power-Saving ON")
       }
     })
-
   </script>
-  <div id="dummy">
-  </div>
   </body>
 </html>
