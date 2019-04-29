@@ -22,8 +22,10 @@
       <button type="button" class="btn btn-info" id="reset" name="reset">Reset</button>
       <br>
       <button type="button" class="btn btn-warning" id="toggle" name="toggle">Turn Power-Saving OFF</button>
-      <div id="weather"></div>
       <div id="feedback"></div>
+      <br>
+      <div id="weather"></div>
+      <div id="outsideTemp"></div>
     </div>
 
   <script src="../src/thermostat.js"></script>
@@ -35,8 +37,12 @@
       setTemp();
     })
 
-    $.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed", function(resp){
+    $.get("http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=a3d9eb01d4de82b9b8d0849ef604dbed", function(resp){
       $("#weather").html("Today in London: " + resp.weather[0].main);
+    })
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=a3d9eb01d4de82b9b8d0849ef604dbed", function(resp){
+      $("#outsideTemp").html("Outside Temperature: " + resp.main.temp + "°C");
     })
 
     function setTemp() {
